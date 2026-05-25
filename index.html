@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PDCA 戴明环 - 交互式持续改进工具">
+    <title>PDCA 戴明环 - 交互式循环</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="panel" class="panel" role="region" aria-label="PDCA 信息面板">
+        <h1 class="panel-title">PDCA 戴明环</h1>
+        <h2 id="title" class="panel-subtitle">点击模块</h2>
+        <p id="desc" class="panel-description">选择 PLAN / DO / CHECK / ACT 查看内容</p>
+        <div class="panel-nav">
+            <button class="nav-btn" data-phase="plan" aria-label="计划阶段">PLAN</button>
+            <button class="nav-btn" data-phase="do" aria-label="执行阶段">DO</button>
+            <button class="nav-btn" data-phase="check" aria-label="检查阶段">CHECK</button>
+            <button class="nav-btn" data-phase="act" aria-label="处理阶段">ACT</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <svg viewBox="0 0 800 800" id="pdca" role="img" aria-label="PDCA 循环图表">
+            <defs>
+                <filter id="shadow">
+                    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+                </filter>
+                <style>
+                    .segment { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+                </style>
+            </defs>
+
+            <circle cx="400" cy="400" r="120" class="center" filter="url(#shadow)"/>
+            <text x="400" y="390" text-anchor="middle" class="centerTitle">PDCA</text>
+            <text x="400" y="430" text-anchor="middle" class="centerSub">Continuous Improvement</text>
+
+            <path id="plan" class="segment" data-phase="plan" d="M400,400 L400,120 A280,280 0 0,1 680,400 Z"/>
+            <path id="do" class="segment" data-phase="do" d="M400,400 L680,400 A280,280 0 0,1 400,680 Z"/>
+            <path id="check" class="segment" data-phase="check" d="M400,400 L400,680 A280,280 0 0,1 120,400 Z"/>
+            <path id="act" class="segment" data-phase="act" d="M400,400 L120,400 A280,280 0 0,1 400,120 Z"/>
+
+            <text x="400" y="210" class="label" data-phase="plan">PLAN</text>
+            <text x="590" y="410" class="label" data-phase="do">DO</text>
+            <text x="400" y="610" class="label" data-phase="check">CHECK</text>
+            <text x="200" y="410" class="label" data-phase="act">ACT</text>
+        </svg>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
